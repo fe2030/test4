@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLMとGemini 2.5 Proを活用した業務生産性向上セミナー</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #4285F4; /* Google Blue */
+            --secondary-color: #34A853; /* Google Green */
+            --background-color: #f8f9fa;
+            --text-color: #3c4043;
+            --heading-color: #1a0dab;
+            --card-bg-color: #ffffff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--card-bg-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .navbar .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #4285F4, #34A853);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg-color);
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            scroll-margin-top: 80px; /* Offset for sticky nav */
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--heading-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* Specific Elements */
+        .agenda, .hands-on-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .agenda li, .hands-on-steps li {
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .tool-comparison {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 45%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            flex-grow: 1;
+        }
+
+        .tool h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .prompt {
+            background-color: #202124;
+            color: #e8eaed;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border-left: 5px solid #FBC02D; /* Google Yellow */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #3c4043;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .tool-comparison {
+                flex-direction: column;
+            }
+            .tool {
+                max-width: 100%;
+            }
+            .navbar .container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 10px;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">AI Productivity Seminar</div>
+            <ul class="nav-links">
+                <li><a href="#intro">目的</a></li>
+                <li><a href="#tools">ツール紹介</a></li>
+                <li><a href="#method1">手法1</a></li>
+                <li><a href="#method2">手法2</a></li>
+                <li><a href="#summary">まとめ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>NotebookLMとGemini 2.5 Proを<br>活用した業務生産性向上セミナー</h1>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section id="intro">
+            <h2>セミナーの目的</h2>
+            <p><strong>「AIを触ってみたけど何が正解かわからない」</strong>状態からの脱却を目指し、Googleの強力なコンビ「NotebookLM」と「Gemini 2.5 Pro」を使った明日から使えるテクニックを習得します。業務の生産性を劇的に向上させるための具体的な手法をハンズオン形式で学びます。</p>
+            <h3>本日のアジェンダ (約90分)</h3>
+            <ul class="agenda">
+                <li>1. NotebookLMとGemini 2.5 Proの役割と得意なことの整理 (10分)</li>
+                <li>2. 手法1: 秋葉原の美味しいお店情報を活用したグルメeラーニング作成 (30分)</li>
+                <li>3. 手法2: 秋葉原のメイドカフェ情報から自分に合ったお店を選ぶAIマッチング (30分)</li>
+                <li>4. まとめと質疑応答 (20分)</li>
+            </ul>
+        </section>
+
+        <section id="tools">
+            <h2>NotebookLMとGemini 2.5 Proの役割</h2>
+            <p>Googleの最強コンビが業務生産性を劇的に向上させます。それぞれの強みを理解し、適切に組み合わせることで、効果的なAI活用が実現できます。</p>
+            <div class="tool-comparison">
+                <div class="tool">
+                    <h3>NotebookLM: 資料の読み手、整理屋さん</h3>
+                    <ul>
+                        <li>アップロードされた資料の整理、要点の抽出</li>
+                        <li>自身がアップロードした情報のみを使用</li>
+                        <li>与えた情報以外は基本出力しない</li>
+                    </ul>
+                </div>
+                <div class="tool">
+                    <h3>Gemini 2.5 Pro: アイデアの発想屋、提案屋</h3>
+                    <ul>
+                        <li>何もない状態からでも構成や文章を考える</li>
+                        <li>Webや学習済みの知識を広く参照</li>
+                        <li>情報を想像で補う（ハルシネーション）の注意が必要</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="method1">
+            <h2>手法1: 秋葉原グルメ情報をeラーニング化</h2>
+            <h3>課題</h3>
+            <p>ネット上に情報が散在し、古い情報と新しい情報が混在している秋葉原のグルメ情報。これら<strong>「見つけにくく整理されていない情報」</strong>を解決します。</p>
+            <h3>ソリューション</h3>
+            <p>NotebookLMとGemini 2.5 Proを組み合わせ、秋葉原の様々なグルメ情報を収集・整理し、楽しく学べるeラーニングクイズに自動変換します。実用的な飲食店ガイドを短時間で作成可能です。</p>
+            <h3>ハンズオンステップ</h3>
+            <ol class="hands-on-steps">
+                <li><strong>NotebookLMでの情報整理:</strong><br>秋葉原の飲食店情報、口コミ、メニューなどのデータをアップロードし、プロンプトを使ってクイズの質問、選択肢、解説を20個生成させ、テキストをコピーします。</li>
+                <li><strong>Gemini 2.5 Proでのクイズ生成:</strong><br>NotebookLMからコピーした情報をGeminiに貼り付け、「キャンバスモード」をオンにして、ランダム出題や採点機能付きのインタラクティブなクイズを作成するよう指示します。</li>
+                <li><strong>応用 - 機能追加:</strong><br>さらに「自分好みの食べ歩きコース生成機能」や「グルメハンターRPGゲーム化」など、簡単な指示で応用的な機能を追加できます。</li>
+            </ol>
+        </section>
+
+        <section id="method2">
+            <h2>手法2: AIで自分に合った秋葉原メイドカフェを見つける</h2>
+            <h3>課題</h3>
+            <p><strong>「多くのメイドカフェがあり、どのお店が自分に合っているか分からない」</strong>「サービス内容や雰囲気、予算の比較が大変」といった課題により、本当に自分に合ったお店と出会えない問題を解決します。</p>
+            <h3>ソリューション</h3>
+            <p>AIを活用することで、自分好みの雰囲気やサービスに合ったお店を効率的に発見し、予算や特別なニーズに応じたパーソナライズされた提案を受けられます。</p>
+            <h3>ハンズオンステップ</h3>
+            <ol class="hands-on-steps">
+                <li><strong>NotebookLMでの情報整理:</strong><br>「ソースを探す」機能でWeb上のメイドカフェ情報を収集・インポートし、「タイプ別に分類し、特徴と人気店舗をまとめて」というプロンプトで情報を整理させ、リストをコピーします。</li>
+                <li><strong>Gemini 2.5 Proでの好み分析とマッチング:</strong><br>Geminiとの対話を通じて、メイドカフェへの期待や重視する点を伝えます。AIが潜在的な好みを分析し、最適な店舗をランキング形式で提案。さらに店舗比較ツールなども自動生成できます。</li>
+            </ol>
+            <h3>潜在意識を探るプロンプト例</h3>
+            <p>以下のような一見関係のない質問から、潜在的な好みを引き出すプロンプトが有効です。</p>
+            <div class="prompt">
+                あなたはメイドカフェ診断士です。私の潜在的なメイドカフェの好みを分析するために、一見関係のない質問を20問用意してください。質問の後、私の回答を集めて分析し、私に最適なメイドカフェのタイプ、接客スタイル、おすすめメニュー、店内の雰囲気を提案してください。質問は「休日はどのように過ごすことが多いですか？」や「友人との会話で最も重視することは何ですか？」などの間接的なものを含めてください...
+            </div>
+        </section>
+        
+        <section id="summary">
+            <h2>まとめ</h2>
+            <p>情報の整理・抽出が得意な<strong>NotebookLM</strong>と、創造・提案・対話が得意な<strong>Gemini 2.5 Pro</strong>の組み合わせは、業務生産性を飛躍的に高める強力なツールです。本日の手法を使えば、社内資料の教育コンテンツ化や、個人の成長戦略立案など、様々な場面で活用できます。Gemini 2.5 Proは単なるテキスト生成ツールを超え、<strong>「共に成長するツール」</strong>へと進化しています。</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AI Productivity Seminar Portfolio. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
